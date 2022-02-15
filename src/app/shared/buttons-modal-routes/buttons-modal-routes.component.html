@@ -1,0 +1,25 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid" *ngIf="properties">
+  <div class="row">
+    <ng-container *ngFor="let item of properties">
+      <div class="col-md-12 xl-50">
+        <div class="card o-hidden widget-cards">
+          <a [routerLink]="item.route" (click)="modal.dismiss(item.number)" [ngClass]="item.classNg" [ngStyle]="item.style">
+            <div class="media static-top-widget row">
+              <div class="icons-widgets col-4">
+                <div class="align-self-center text-center">
+                  <app-feather-icons [icon]="item.icon" [ngClass]="item.iconClass"></app-feather-icons>
+                </div>
+              </div>
+              <div class="media-body col-8">
+                <h4 class="m-0">{{ item.tittle }}</h4>
+                <!-- <h3 class="mb-0">$ <span class="counter" [CountTo]="45631" [from]="0" [duration]="2">45631</span><small> This Month</small></h3> -->
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<!-- Container-fluid Ends-->

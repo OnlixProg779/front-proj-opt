@@ -1,0 +1,178 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-12">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Credit Movements</h6>
+          <div class="row">
+            <div class="col-xl-6">
+              <div class="card">
+                <div class="card-header pt-0 pb-1">
+                  <h5>Filters</h5>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-form-label pt-0">
+                    Deposit Date </label>
+                  <input [(ngModel)]="optionsCreditMovementsImported.date" class="form-control col-xl-8 col-sm-7"
+                    type="date">
+                </div>
+
+                <div class="form-group">
+                  <label class="col-form-label pt-0">
+                    # Document </label>
+                  <input [(ngModel)]="optionsCreditMovementsImported.document" class="form-control col-xl-8 col-sm-7"
+                    type="text">
+                </div>
+
+                <div class="form-group">
+                  <label class="col-form-label pt-0">
+                    Amount </label>
+                  <input [(ngModel)]="optionsCreditMovementsImported.value" class="form-control col-xl-8 col-sm-7"
+                    type="number">
+                </div>
+
+
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="card">
+                <div class="card-header pt-0 pb-1">
+                  <h5>Filters</h5>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-form-label pt-0">
+                    Search Query </label>
+                  <input [(ngModel)]="optionsCreditMovementsImported.searchQuery" class="form-control col-xl-8 col-sm-7"
+                    type="text">
+                </div>
+
+                <div class="form-group">
+                  <label class="col-form-label pt-0">
+                    Order by </label>
+                  <input [(ngModel)]="optionsCreditMovementsImported.orderBy" class="form-control col-xl-8 col-sm-7"
+                    type="text">
+                </div>
+
+                <!-- <div class="form-group">
+                  <label class="col-form-label pt-0">
+                    Description </label>
+                  <input [(ngModel)]="optionsCreditMovementsImported.description" class="form-control col-xl-8 col-sm-7" type="text">
+                </div> -->
+                <div class="row">
+                  <div class="col-xl-3">
+                    <div class="form-group" (click)="clickAll()">
+                      <label class="col-form-label pt-0">
+                        All </label> <br>
+                      <app-feather-icons *ngIf="!filterAll" [icon]="'toggle-left'" style="color: rgb(59, 59, 59);">
+                      </app-feather-icons>
+                      <app-feather-icons *ngIf="filterAll" [icon]="'toggle-right'" style="color: rgb(9, 238, 9);">
+                      </app-feather-icons>
+                    </div>
+                  </div>
+                  <div class="col-xl-3">
+                    <div class="form-group" (click)="clickVerifie()">
+                      <label class="col-form-label pt-0">
+                        {{stringVerified}} </label> <br>
+                      <app-feather-icons *ngIf="!optionsCreditMovementsImported.verified" [icon]="'toggle-left'"
+                        style="color: rgb(59, 59, 59);"></app-feather-icons>
+                      <app-feather-icons *ngIf="optionsCreditMovementsImported.verified" [icon]="'toggle-right'"
+                        style="color: rgb(9, 238, 9); "></app-feather-icons>
+                    </div>
+                  </div>
+                  <div class="col-xl-3">
+                    <div class="form-group" (click)="clickActive()">
+                      <label class="col-form-label pt-0">
+                        {{stringActive}} </label> <br>
+                      <app-feather-icons *ngIf="!optionsCreditMovementsImported.active" [icon]="'toggle-left'"
+                        style="color: rgb(59, 59, 59);"></app-feather-icons>
+                      <app-feather-icons *ngIf="optionsCreditMovementsImported.active" [icon]="'toggle-right'"
+                        style="color: rgb(9, 238, 9);"></app-feather-icons>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <button (click)="initDataCreditMovementsImported()" class="btn btn-info">Search</button>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="bankAccountId">
+
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsCreditMovementsImported.settings"
+                [source]="optionsCreditMovementsImported.source">
+              </ng2-smart-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title f-w-600" id="exampleModalLabel">Credit Movement <strong>(VIEW)</strong></h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ng-container>
+
+      <ng-container *ngIf="creditMovementsImported">
+
+        <div class="card">
+          <div class="card-header">
+            <h5>Credit Movement Imported:</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="profile-details text-center">
+              <h5 class="f-w-600 mb-0">{{creditMovementsImported.description}}</h5>
+              <span> Date: {{creditMovementsImported.date  | date:'dd/MM/yyyy'}}</span><br>
+              <span> {{creditMovementsImported.office}}</span><br>
+              <span> {{creditMovementsImported.document}}</span><br>
+              <span> {{creditMovementsImported.value| currency:'USD'}}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container>
+        <div class="card">
+          <div class="card-header">
+            <h5>Belongs to:</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="profile-details text-center">
+              <h5 class="f-w-600 mb-0">Client: {{creditMovementVerified.client.name}}</h5>
+              <span>Date: {{creditMovementVerified.depositDate  | date:'dd/MM/yyyy'}}</span><br>
+              <span>Bank Account: {{creditMovementVerified.bankAccount.accountAlias}}</span><br>
+              <span>Document: {{creditMovementVerified.document}}</span><br>
+              <span>Value: {{creditMovementVerified.value | currency:'USD'}}</span>
+            </div>
+            <div class="row">
+              <img [src]="creditMovementVerified.image"
+                class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+
+  </div>
+
+  <div class="modal-footer">
+    <!-- <button *ngIf="modalUp.titleButton" type="button" class="btn btn-primary" (click)="modal.dismiss('accept')" ngbAutofocus>{{modalUp.titleButton}}</button> -->
+    <button class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')"
+      ngbAutofocus>Close</button>
+  </div>
+</ng-template>

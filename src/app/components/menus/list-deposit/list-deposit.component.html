@@ -1,0 +1,95 @@
+
+<!-- Container-fluid starts-->
+<app-list-credit-movements-generic [optionsCreditMovement]="optionsCreditMovement" (delete)="onDelete($event, content)" (update)="onEdit($event, content)" (patchVerified)="onVerified($event, content)" (submit)="searchFilters($event)"></app-list-credit-movements-generic>
+<!-- Container-fluid Ends-->
+
+<ng-template #content let-modal> 
+    <div class="modal-header">
+        <h5 class="modal-title f-w-600" id="exampleModalLabel">{{modalUp.title}} <strong>({{modalUp.actionModal}})</strong></h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" *ngIf="!modalUp.titleButton && modalUp.status != 'Verified Automatically'">
+        <h4 class="">This action is not possible.
+        </h4>
+        <h4 class="">The deposit has <span class="font-primary">{{modalUp.status}}</span></h4>
+    </div>
+    <div class="modal-body" *ngIf="modalUp.status == 'Verified Automatically'">
+      <h4 class="">The system has carried out the procedure automatically.
+      </h4>
+      <h4 class="">The deposit has <span class="font-primary">{{modalUp.status}}</span></h4>
+  </div>
+    <div class="modal-body" *ngIf="modalUp.titleButton">
+        <h3>Are you sure to {{modalUp.titleButton}}?</h3>
+
+        <ng-container *ngIf="modalUp.actionModal == 'VERIFI'">
+
+            <ng-container>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Deposit Details</h5>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="profile-details text-center">
+                        <h5 class="f-w-600 mb-0">Client: {{creditMovementToVerifi.client.name}}</h5>
+                        <span >Date: {{creditMovementToVerifi.depositDate  | date:'dd/MM/yyyy'}}</span><br>
+                        <span >Bank Account: {{creditMovementToVerifi.bankAccount.accountAlias}}</span><br>
+                        <span >Document: {{creditMovementToVerifi.document}}</span><br>
+                        <span >Value: {{creditMovementToVerifi.value | currency:'USD'}}</span>
+                      </div>
+                      <div class="row">
+                        <img [src]="creditMovementToVerifi.image" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                      </div>
+                    </div>
+                  </div>
+            </ng-container>
+            
+            <app-list-imported-credit-movements *ngIf="creditMovementToVerifi.bankAccount.bankAccountId && showTableCreditMovementImported" [stringVerified]="'Verified (No)'" [showVerified]="false" [bankAccountId]="creditMovementToVerifi.bankAccount.bankAccountId" [columnSelect]="columnSelect" (submitCMISelected)="creditMovementImportedSelected($event)"></app-list-imported-credit-movements> 
+
+            <ng-container *ngIf="showMsgNoMatchValues">
+              <div class="modal-body">
+                <h4 class="">This action is not possible.
+                </h4>
+                <h4 class="">The values ​​between the 2 transactions <span class="font-primary">do not match</span></h4>
+            </div>
+            <div class="col-md-4 p-0 m-1">
+              <button class="btn btn-dark form-button" (click)="changeCreditMovementImportedRow()" type="button">
+                Change
+              </button>
+            </div>
+            </ng-container>
+            
+            <ng-container *ngIf="showCreditMovementImport">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Deposit Verifi To:</h5>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="profile-details text-center">
+                        <h5 *ngIf="creditMovementsImported.description" class="f-w-600 mb-0">{{creditMovementsImported.description}}</h5>
+                        <span *ngIf="creditMovementsImported.date" > Date: {{creditMovementsImported.date  | date:'dd/MM/yyyy'}}</span><br>
+                        <span *ngIf="creditMovementsImported.office" > {{creditMovementsImported.office}}</span><br>
+                        <span *ngIf="creditMovementsImported.document" > {{creditMovementsImported.document}}</span><br>
+                        <span *ngIf="creditMovementsImported.value" > {{creditMovementsImported.value| currency:'USD'}}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 p-0 m-1">
+                      <button class="btn btn-dark form-button" (click)="changeCreditMovementImportedRow()" type="button">
+                        Change
+                      </button>
+                    </div>
+                  </div>
+            </ng-container>
+            
+        </ng-container>
+        
+
+    </div>
+
+    <div class="modal-footer">
+        <button *ngIf="modalUp.titleButton" type="button" class="btn btn-primary" (click)="modal.dismiss('accept')" ngbAutofocus>{{modalUp.titleButton}}</button>
+        <button class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
+    </div>
+</ng-template>

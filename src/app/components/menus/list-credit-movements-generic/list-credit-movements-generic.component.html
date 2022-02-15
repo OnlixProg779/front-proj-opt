@@ -1,0 +1,130 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5>Deposit Details</h5>
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="card">
+                  <div class="card-header pt-0 pb-1">
+                    <h5>Filters</h5>
+                  </div>
+  
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label">
+                      Deposit Date </label>
+                    <input [(ngModel)]="optionsCreditMovement.depositDate" class="form-control col-xl-8 col-sm-7"
+                      type="date">
+                  </div>
+  
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label"> Account</label>
+                    <select [(ngModel)]="optionsCreditMovement.bankAccountId" class="form-control col-xl-8 col-sm-7">
+                      <option  [ngValue]="null"></option>
+                      <option *ngFor="let c of arrayBankAccounts" [ngValue]="c.bankAccountId">{{c.accountAlias}}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label pt-0">
+                      # Document </label>
+                    <input [(ngModel)]="optionsCreditMovement.document" class="form-control col-xl-8 col-sm-7"
+                      type="text">
+                  </div>
+  
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label pt-0">
+                      Amount </label>
+                    <input [(ngModel)]="optionsCreditMovement.value" class="form-control col-xl-8 col-sm-7"
+                      type="number">
+                  </div>
+  
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label pt-0">
+                      Search Query </label>
+                    <input [(ngModel)]="optionsCreditMovement.searchQuery" class="form-control col-xl-8 col-sm-7"
+                      type="text">
+                  </div>
+  
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card">
+                  <div class="card-header pt-0 pb-1">
+                    <h5>Filters</h5>
+                  </div>
+
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label"> Credit Reason</label>
+                    <select [(ngModel)]="optionsCreditMovement.creditReasonId" class="form-control col-xl-8 col-sm-7">
+                      <option  [ngValue]="null"></option>
+                      <option *ngFor="let c of arrayCreditReasons" [ngValue]="c.creditReasonId">{{c.reason}}</option>
+                    </select>
+                  </div>
+  
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label pt-0"> Status</label>
+                    <select [(ngModel)]="optionsCreditMovement.creditMovementStatusId" class="form-control col-xl-8 col-sm-7">
+                      <option  [ngValue]="null"></option>
+                      <option *ngFor="let c of arrayCreditMovementStatuses" [ngValue]="c.creditMovementStatusId">{{c.status}}</option>
+                    </select>
+                  </div>
+  
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label pt-0">
+                      Order by </label>
+                    <input [(ngModel)]="optionsCreditMovement.orderBy" class="form-control col-xl-8 col-sm-7"
+                      type="text">
+                  </div>
+  
+                  <div class="form-group" style="padding: 0 2em;">
+                    <label class="col-form-label pt-0"> Active</label>
+                    <select [(ngModel)]="optionsCreditMovement.active" class="form-control col-xl-8 col-sm-7">
+                      <option  [ngValue]="null">All</option>
+                      <option  [ngValue]="false">Deleted</option>
+                      <option  [ngValue]="true">No Deleted</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body " style="padding: 0 2em;">
+              <button (click)="searchData()" class="btn btn-info">Search</button>
+            </div>
+        </div>
+
+        <div class="card-body p-2">
+                    
+           <div class="btn-popup pull-right" *ngIf="optionsCreditMovement.clientId">
+                <a class="btn btn-secondary" [routerLink]="'/deposits/create-deposit/'+ optionsCreditMovement.clientId">Create Deposit</a>
+            </div>
+            <div class="btn-popup pull-right" *ngIf="optionsCreditMovement.clientId == undefined">
+                <a class="btn btn-secondary" [routerLink]="'/deposits/create-deposit/'">Create Deposit</a>
+            </div>
+
+            <div id="batchDelete" class="custom-datatable">
+                <div class="table-responsive ">
+                  <div class="row">
+                    <div class="flex-column p-2 text-dark pl-2 ml-2 font-weight-bold" >  
+                      Total records: {{optionsCreditMovement.totalCount}} u | View: 
+                    </div> 
+
+                    <div class="form-group">
+                      <select class="form-control form-control-sm"  [(ngModel)]="this.optionsCreditMovement.showPerPage"  (change)="changeSettingsTable($event.target.value)">
+                        <option  [ngValue]="15">15</option>
+                        <option  [ngValue]="5">5</option>
+                        <option  [ngValue]="3">3</option>
+                      </select>
+                    </div>
+
+             
+                  </div>
+                    <ng2-smart-table [settings]="optionsCreditMovement.settings" [source]="optionsCreditMovement.source" (edit)="onEdit($event)" (delete)="onDelete($event)"></ng2-smart-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

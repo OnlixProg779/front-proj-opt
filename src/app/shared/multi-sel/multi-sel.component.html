@@ -1,0 +1,18 @@
+<!-- Cuando se lo encuentra -->
+<ng-container *ngFor="let item of model.action; let i=index">
+
+  <ng-container *ngIf="item == 'FILE UPLOAD'">
+    <div>
+      <button class="font-weight-bolder m-1" [ngClass]="model.stepClass[i]" type="button" mat-raised-button
+        (click)="fileImportInput.click()" [style]="model.styl[i]">
+        Select File
+      </button>
+      <input type="file" name="CSV File Upload" hidden #fileImportInput accept=".csv"
+        (change)="fileChangeListener($event)" />
+    </div>
+  </ng-container>
+  <ng-container *ngIf="item != 'FILE UPLOAD'">
+    <button class="font-weight-bolder m-1" type="button" [ngClass]="model.stepClass[i]"
+      (click)="onClick(model.action[i])" [style]="model.styl[i]">{{model.action[i]}}</button>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,32 @@
+.section-icon {
+  font-size: 200%;
+  width: max-content;
+  margin: 0 auto;
+}
+.section-icon i {
+  padding: 0.1rem;
+}
+
+#card {
+  margin: 1%;
+  padding: 0;
+  border-width: 0px;
+  border-bottom-width: 4px;
+  border-style: solid;
+  border-radius: 5%;
+  background-color: white;
+  border-bottom-color: rgba(44, 152, 240, 0.801);
+  text-align: center !important;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.138);
+}
+
+.card-body {
+  padding: 0 2% 2%;
+  height: 100%;
+}
+
+.card-title {
+  margin: 0.5em 0;
+}

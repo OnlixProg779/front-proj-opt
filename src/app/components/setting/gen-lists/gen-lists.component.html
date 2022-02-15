@@ -1,0 +1,182 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-6 xl-50">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Banks</h6>
+          <div class="row">
+
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsBanks.settings" [source]="optionsBanks.source"
+              (createConfirm)="onCreateConfirmBanks($event)"
+              (deleteConfirm)="onDeleteConfirmBanks($event)"
+              (editConfirm)="onUpdateConfirmBanks($event)">             
+              </ng2-smart-table>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 xl-50">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Account Types</h6>
+          <div class="row">
+
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsAccountTypes.settings" [source]="optionsAccountTypes.source"
+              (createConfirm)="onCreateConfirmAccountTypes($event)"
+              (deleteConfirm)="onDeleteConfirmAccountTypes($event)"
+              (editConfirm)="onUpdateConfirmAccountTypes($event)">  
+              </ng2-smart-table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 xl-50">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Credit Reason</h6>
+          <div class="row">
+
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsCreditReason.settings" [source]="optionsCreditReason.source"
+              (createConfirm)="onCreateConfirmCreditReason($event)"
+              (deleteConfirm)="onDeleteConfirmCreditReason($event)"
+              (editConfirm)="onUpdateConfirmCreditReason($event)">    
+              </ng2-smart-table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 xl-50">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Debit Reason</h6>
+          <div class="row">
+
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsDebitReason.settings" [source]="optionsDebitReason.source"
+              (createConfirm)="onCreateConfirmDebitReason($event)"
+              (deleteConfirm)="onDeleteConfirmDebitReason($event)"
+              (editConfirm)="onUpdateConfirmDebitReason($event)"></ng2-smart-table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 xl-50">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Credit Movement Status</h6>
+          <div class="row">
+
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsCreditMovementStatus.settings" [source]="optionsCreditMovementStatus.source"
+              (createConfirm)="onCreateConfirmCreditMovementStatus($event)"
+              (deleteConfirm)="onDeleteConfirmCreditMovementStatus($event)"
+              (editConfirm)="onUpdateConfirmCreditMovementStatus($event)"> 
+              </ng2-smart-table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 xl-50">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Debit Movement Status</h6>
+          <div class="row">
+
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsDebitMovementStatus.settings" [source]="optionsDebitMovementStatus.source"
+              (createConfirm)="onCreateConfirmDebitMovementStatus($event)"
+              (deleteConfirm)="onDeleteConfirmDebitMovementStatus($event)"
+              (editConfirm)="onUpdateConfirmDebitMovementStatus($event)"> 
+              </ng2-smart-table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Bank Accounts</h6>
+          <div class="row">
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="optionsBankAccounts.settings" 
+              [source]="optionsBankAccounts.source"
+              (createConfirm)="onCreateConfirmBankAccount($event)"
+              (deleteConfirm)="onDeleteConfirmBankAccount($event)"
+              (editConfirm)="onUpdateConfirmBankAccount($event)"> 
+              </ng2-smart-table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

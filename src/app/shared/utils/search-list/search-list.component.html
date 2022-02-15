@@ -1,0 +1,66 @@
+<div class="row">
+    <form [formGroup]="filterSearchForm" id="ngFilterSearchForm" (ngSubmit)="searchFilter('button','button')" class="col-xl-12">
+        <div class="card-header p-0 pb-1 pl-3">
+            <h5>Client Search</h5>
+        </div>
+        <div class="row form-group m-1">
+            <div class=" col-md-7 p-0 m-1">
+                <input placeholder="Search Query" formControlName="searchQuery" class="form-control m-0" type="text" (keyup)="filterThrottle.next($event.target.value)" (keydown)="vaciarInputNumber()">
+            </div>
+            <div class="col-md-4 p-0 m-1">
+                <button class="btn btn-primary form-button" form="ngFilterSearchForm" type="submit">
+                    Search
+                </button>
+            </div>
+        </div>
+        <div class="row form-group m-1">
+            <div class=" col-md-7 p-0 m-1">
+                <input placeholder="# Search Number #" formControlName="searchNumber" class="form-control m-0" type="number" (keyup)="filterNumber.next($event.target.value)" (keydown)="vaciarInputQuery()">
+            </div>
+            <div class="col-md-4 p-0 m-1">
+
+            </div>
+        </div>
+    </form>
+
+    <div class="col-xl-12" *ngIf="mostrarTabla">
+        <div class="form-group m-0">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div id="batchDelete" class="custom-datatable">
+                                <div class="table-responsive">
+                                    <ng2-smart-table [settings]="optionsClient.settings" [source]="optionsClient.source"></ng2-smart-table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 p-0 m-1">
+            <button class="btn btn-info form-button" (click)="createClientModal(content)" type="button">
+              New Client
+            </button>
+          </div>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title f-w-600" id="exampleModalLabel"><strong>New Client</strong></h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-create-client [callType]="'modal'" (clientResponse)="responseNewClient($event)"></app-create-client>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary" (click)="modal.dismiss('accept')" ngbAutofocus>Accept</button> -->
+        <button  class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
+    </div>
+</ng-template>

@@ -1,0 +1,34 @@
+<div class="col-xl-12">
+    <form [formGroup]="filterSearchForm" id="ngFilterSearchForm" (ngSubmit)="searchFilter('button', 'button')" class="row">
+        <div class="col-lg-5">
+            <div class="card mb-2">
+                <div class="card-header p-0 pb-1">
+                  <h5>Search Query</h5>
+                </div>
+                <div class="form-group">
+                  <input formControlName="searchQuery" class="form-control" type="text"
+                    (keyup)="filterThrottle.next($event.target.value)" (keydown)="vaciarInputNumber()">
+                </div>
+              </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card mb-2">
+                <div class="card-header p-0 pb-1">
+                  <h5>Search #</h5>
+                </div>
+                <div class="form-group">
+                  <input formControlName="searchNumber" class="form-control" type="number"
+                    (keyup)="filterNumber.next($event.target.value)"  (keydown)="vaciarInputQuery()">
+                </div>
+              </div>
+        </div>
+
+    </form>
+
+  <div class="button">
+    <button class="btn btn-primary" form="ngFilterSearchForm" type="submit">
+      Search
+    </button>
+  </div>
+</div>

@@ -1,0 +1,199 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card tab2-card">
+                <div class="card-header">
+                    <h5> {{ renderValue }} </h5>
+                </div>
+                <div class="card-body tab2-card">
+                    <form [formGroup]="accountForm" appAutoFocusInvalidInput (submit)="save()" id="ngFormClient" class="needs-validation user-add">
+
+                        <ngb-tabset class="tab-coupon">
+                            <ngb-tab title="Account">
+                                <ng-template ngbTabContent>
+                                    <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="card">
+                                                    <div class="card-header pt-0">
+                                                        <h5>Account</h5>
+                                                    </div>
+
+                                                    <div class="  form-group">
+                                                        <label for="validationCustom9" class="col-form-label pt-0"><span style="color: rgba(0, 0, 0, 0);">·</span>
+                                                        CI</label>
+                                                        <input formControlName="dni" class="form-control" id="validationCustom9" type="text">
+                                                    </div>
+
+                                                    <div class="  form-group">
+                                                        <label for="validationCustom1" class="col-form-label pt-0"><span>*</span> First
+                                                        Name</label>
+                                                        <input formControlName="firstName" class="form-control  " id="validationCustom1" type="text">
+                                                        <div *ngIf="accountForm.controls.firstName.touched && accountForm.controls.firstName.errors?.required" class="text text-danger row pl-4 pt-1">
+                                                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                                                            </app-feather-icons>
+                                                            <div>
+                                                                {{validatorService.getErrorField(accountForm,'firstName','First name')}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="  form-group">
+                                                        <label for="validationCustom2" class="col-form-label pt-0"><span>*</span>
+                                                        Last Name</label>
+                                                        <input formControlName="lastName" class="form-control  " id="validationCustom2" type="text">
+                                                        <div *ngIf="accountForm.controls.lastName.touched && accountForm.controls.lastName.errors?.required" class="text text-danger row pl-4 pt-1">
+                                                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                                                            </app-feather-icons>
+                                                            <div>
+                                                                {{validatorService.getErrorField(accountForm,'lastName','Last name')}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="  form-group">
+                                                        <label for="validationCustom8" class="col-form-label pt-0"><span>*</span>
+                                                        City</label>
+                                                        <input formControlName="city" class="form-control  " id="validationCustom8" type="text">
+                                                        <div *ngIf="accountForm.controls.city.touched && accountForm.controls.city.errors?.required" class="text text-danger row pl-4 pt-1">
+                                                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                                                            </app-feather-icons>
+                                                            <div>
+                                                                {{validatorService.getErrorField(accountForm,'city','City')}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group" *ngIf="renderValue !== 'Client Update'">
+                                                        <label for="validationCustom10" class="col-form-label pt-0"><span style="color: rgba(0, 0, 0, 0);">·</span>
+                                                        Email</label>
+                                                        <input formControlName="password" class="form-control  " id="validationCustom10" type="email">
+                                                        <!-- <div *ngIf="accountForm.controls.password.touched && accountForm.controls.password.errors?.required" class="text text-danger row pl-4 pt-1">
+                                                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                                                            </app-feather-icons>
+                                                            <div>
+                                                                {{validatorService.getErrorField(accountForm,'password','Email')}}
+                                                            </div>
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="  form-group">
+                                                        <label for="validationCustom5" class="col-form-label pt-0"><span style="color: rgba(0, 0, 0, 0);">·</span>
+                                                        Date Of Birth</label>
+                                                        <input formControlName="dateOfBirth" class="form-control  " id="validationCustom5" type="date">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="card">
+                                                    <div class="card-header pt-0">
+                                                        <h5>Details</h5>
+                                                    </div>
+                                                    <div class="  form-group">
+                                                        <label for="validationCustom6" class="col-form-label pt-0"><span style="color: rgba(0, 0, 0, 0);">·</span>
+                                                        Phone</label>
+                                                        <input formControlName="phone" class="form-control  " id="validationCustom6" type="text">
+                                                    </div>
+
+
+                                                    <div class="  form-group">
+                                                        <label for="validationCustom3" class="col-form-label pt-0"><span style="color: rgba(0, 0, 0, 0);">·</span>
+                                                        Instagram</label>
+                                                        <input formControlName="instagramName" class="form-control  " id="validationCustom3" type="text">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-form-label mb-1"><span  style="color: rgba(0, 0, 0, 0);">·</span>Type</label>
+                                                        <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated" *ngFor="let item of options2; let indice=index">
+                                                            <label class="d-block p-3" for="edo-ani{{indice}}">
+                                                                <input value="{{ object.values(item)[0]}}" [attr.checked]="optionCheked === object.values(item)[0]? '' : null" (change)="onItemChange($event.target.value)" class="radio_animated" id="edo-ani{{indice}}" type="radio" name="rdo-ani">
+                                                                <strong>{{object.values(item)[0]}}</strong>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-form-label mb-1"><span  style="color: rgba(0, 0, 0, 0);">·</span>Gender</label>
+                                                        <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block p-3" for="edo-ani12{{indice}}" *ngFor="let item of optionsGender; let indice=index">
+                                                                <input value="{{ object.values(item)[0]}}" [attr.checked]="optionChekedGender === object.values(item)[0]? '' : null" (change)="onItemChangeGender($event.target.value)" class="radio_animated" id="edo-ani12{{indice}}" type="radio" name="rdo-ani12">
+                                                                <strong>{{object.values(item)[0]}}</strong>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6" *ngIf="renderValue === 'Client Update'">
+                                                <div class="card">
+                                                    <div class="card-header pt-0">
+                                                        <h5>Sign In Account</h5>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="validationCustom42" class="col-form-label pt-0"><span>*</span>
+                                                            Email</label>
+                                                        <input formControlName="userName" class="form-control" id="validationCustom42" type="text">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="validationCustom43" class="col-form-label pt-0"><span>*</span>
+                                                            Password</label>
+                                                        <input formControlName="passwordReal" class="form-control" id="validationCustom43" type="password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="validationCustom44" class="col-form-label pt-0"><span>*</span>
+                                                            Confirm Password</label>
+                                                        <input formControlName="confirmPwd" class="form-control" id="validationCustom44" type="password">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card">
+                                                    <div class="card-header pt-0">
+                                                        <h5>Permission</h5>
+                                                    </div>
+                                                    <div class="permission-block">
+                                                        <div class="attribute-blocks">
+                                                            <h5 class="f-w-600 mb-3">Client Related permission </h5>
+                                                            <div class="row">
+                                                                <div class="col-xl-3 col-sm-4">
+                                                                    <label>Client Manipulation</label>
+                                                                </div>
+                                                                <div class="col-xl-9 col-sm-8">
+                                                                    <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                                        <label class="d-block" for="edo-ani11">
+                                                                    <input formControlName="claimValueClient" value="true" class="radio_animated" id="edo-ani11" type="radio"
+                                                                        name="rdo-ani78">
+                                                                    Allow
+                                                                </label>
+                                                                        <label class="d-block" for="edo-ani12">
+                                                                    <input formControlName="claimValueClient"  value="false" class="radio_animated" id="edo-ani12"
+                                                                        type="radio" name="rdo-ani78" >
+                                                                    Deny
+                                                                </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+
+                        </ngb-tabset>
+                    </form>
+
+                    <div class="pull-right">
+                        <button type="submit" form="ngFormClient" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

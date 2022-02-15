@@ -1,0 +1,25 @@
+<div>
+    <a class="btn btn-outline-info-2x" type="button" mat-raised-button (click)="fileInput.click()">
+        <i data-feather="camera">Select Image</i>
+    </a>
+    <a class="btn btn-outline-danger-2x m-1" (click)="refreshImage()">
+        <div class="small-box">
+            <i data-feather="refresh-ccw">Delete</i>
+        </div>
+    </a>
+    <input type="file" hidden #fileInput accept=".png, .jpg, .jpeg" (change)="change($event)" />
+</div>
+
+
+<div class="image-zone" *ngIf="imgResultAfterCompress || urlImagenActual">
+    <div class="file">
+        <div>
+            <div *ngIf="imgResultAfterCompress">
+                <img [src]="imgResultAfterCompress" class="pb-2 pt-2" />
+            </div>
+            <div *ngIf="urlImagenActual">
+                <img [src]="urlImagenActual" class="pb-2 pt-2" />
+            </div>
+        </div>
+    </div>
+</div>

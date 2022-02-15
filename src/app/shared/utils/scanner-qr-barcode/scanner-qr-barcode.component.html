@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <button (click)="enableScanner(content)" *ngIf="!scannerEnabled" type="button" class="btn btn-success">Scann Code</button>
+  </div>
+</div>
+
+<ng-template #content let-modal> 
+    <div class="modal-header">
+        <h5 class="modal-title f-w-600" id="exampleModalLabel">Normal <strong>(Negrilla)</strong></h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ng-container class="scanner-shell">
+            <zxing-scanner #scanner (scanSuccess)="scanSuccessHandler($event, modal)"
+              [formats]="['QR_CODE', 'EAN_13', 'CODE_128', 'DATA_MATRIX']"></zxing-scanner>
+          </ng-container>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
+    </div>
+</ng-template>

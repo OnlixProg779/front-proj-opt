@@ -1,0 +1,62 @@
+<button type="button" class="font-weight-bolder" [ngClass]="model.step"
+  (click)="onClick(content)" [style]="model.styl">{{ model.renderValue }}</button>
+
+
+<ng-template #content let-modal>
+  <ng-container *ngIf="depositDto">
+    <div class="modal-header">
+      <h5 class="modal-title f-w-600" id="exampleModalLabel">DEPOSIT </h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ngb-tabset>
+        <ngb-tab title="Details">
+          <ng-template ngbTabContent>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="media">
+                  <div class="media-body">
+                    <div class="card mb-3 pt-2">
+                      <h4 class="mt-2 mb-2"> <strong>{{depositDto.depositDate | date: 'EEEE, MMMM d, y'}}</strong>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="media">
+                  <div class="media-body">
+                    <span> <span class="text-primary">{{getCreditReasonDeposit(depositDto)}}</span> in {{depositDto.bankAccount.accountAlias}},
+                      # {{depositDto.bankAccount.accountNumber}}</span>
+                    <h2 class="mb-0">{{depositDto.value | currency:'USD':'symbol'}}</h2>
+                    <p>{{depositDto.verifiedType}} <span><i class="fa fa-angle-up"></i></span></p>
+                  </div>
+                </div>
+              </div>
+              <!-- Campo de formulario 7 -->
+              <div class="col-xl-12" *ngIf="depositDto.image">
+                <div class="card mb-3">
+                  <h4 class="m-0">Image</h4>
+                </div>
+                <div class="form-group">
+                  <img [src]="depositDto.image">
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+
+    <div class="modal-footer">
+      <ng-container *ngIf="depositDto.creditMovementStatus.creditMovementStatusId == 'd1fb5e22-f539-140d-8508-d8bb837d5f40'">
+        <button type="button" class="btn btn-primary" (click)="onEditDeposit(depositDto.creditMovementsId, depositDto.client.clientId)">Edit</button>
+      </ng-container>
+      
+      <button class="btn btn-secondary" type="button" ngbAutofocus data-dismiss="modal"
+        (click)="modal.dismiss('Cross click')">Close</button>
+    </div>
+  </ng-container>
+
+
+</ng-template>

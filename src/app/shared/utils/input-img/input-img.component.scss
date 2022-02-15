@@ -1,0 +1,19 @@
+button {
+    margin-bottom: 1rem;
+}
+
+img {
+    width: 14rem;
+}
+
+.image-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 200;
+    border: 2px dashed #f16624;
+    border-radius: 5px;
+    background: white;
+    margin: 10px 0;
+}
