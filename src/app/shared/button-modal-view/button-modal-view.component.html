@@ -50,7 +50,7 @@
 
     <div class="modal-footer">
       <ng-container *ngIf="depositDto.creditMovementStatus.creditMovementStatusId == 'd1fb5e22-f539-140d-8508-d8bb837d5f40'">
-        <button type="button" class="btn btn-primary" (click)="onEditDeposit(depositDto.creditMovementsId, depositDto.client.clientId)">Edit</button>
+        <button type="button" class="btn btn-primary" (click)="onEditDeposit(depositDto.creditMovementsId, depositDto.user.userId)">Edit</button>
       </ng-container>
       
       <button class="btn btn-secondary" type="button" ngbAutofocus data-dismiss="modal"

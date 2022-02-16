@@ -9,13 +9,20 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartistModule } from 'ng-chartist';
 import { SharedModule } from '../../shared/shared.module';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
     CommonModule,
+    NgbModule,
     DashboardRoutingModule,
+    Ng2SmartTableModule,
+    ReactiveFormsModule,
+    FormsModule,
     CountToModule,
     SharedModule,
     ChartsModule,

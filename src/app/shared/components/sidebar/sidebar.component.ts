@@ -18,7 +18,7 @@ export class SidebarComponent {
 
   constructor(private router: Router, public navServices: NavService) {
    
-    this.nombre_sing_in = localStorage.getItem('nombre_sing_in');
+    this.nombre_sing_in = localStorage.getItem('username');
     this.agency_sing_in = localStorage.getItem('agency_sing_in');
 
     this.navServices.items.subscribe(menuItems => {

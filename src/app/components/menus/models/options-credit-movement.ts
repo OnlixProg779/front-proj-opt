@@ -23,8 +23,7 @@ export class OptionsCreditMovement {
 
     public creditReasonId: string = null;
     public creditMovementStatusId: string = null;
-    public creditMovementsImportedId: string = null;
-    public clientId: string = null;
+    public userId: string = null;
     public active:boolean = null;
     // ordenamiento
     public orderBy:string = null;

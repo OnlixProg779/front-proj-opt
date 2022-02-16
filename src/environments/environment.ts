@@ -317,34 +317,34 @@ export const environment = {
         }
       }
     },
-    creditMovementImported: {
-      get: {
-        accept: {
-          getAllJson: 'application/vnd.dsalpha.creditMovementsImported.full+json',
-          getAllXml: 'application/vnd.dsalpha.creditMovementsImported.full+xml',
-          getAllJsonHateoas: 'application/vnd.dsalpha.creditMovementsImported.full.hateoas+json'
-        }
-      },
-      getUnique: {
-        accept: {
-          getJson: 'application/vnd.dsalpha.creditMovementsImported.full+json',
-          getXml: 'application/vnd.dsalpha.creditMovementsImported.full+xml',
-          getJsonHateoas: 'application/vnd.dsalpha.creditMovementsImported.full.hateoas+json',
-        }
-      },
-      post: {
-        ContentType: {
-          postJson: 'application/vnd.dsalpha.creditMovementsImportedforcreation+json',
-          postJsonHateoas: 'application/vnd.dsalpha.creditMovementsImportedforcreation.hateoas+json'
-        }
-      },
-      patch: {
-        ContentType: {
-          patchJson: 'application/vnd.dsalpha.creditMovementsImportedforPatch+json',
-          patchJsonHateoas: 'application/vnd.dsalpha.creditMovementsImportedforPatch.hateoas+json'
-        }
-      }
-    },
+    // creditMovementImported: {
+    //   get: {
+    //     accept: {
+    //       getAllJson: 'application/vnd.dsalpha.creditMovementsImported.full+json',
+    //       getAllXml: 'application/vnd.dsalpha.creditMovementsImported.full+xml',
+    //       getAllJsonHateoas: 'application/vnd.dsalpha.creditMovementsImported.full.hateoas+json'
+    //     }
+    //   },
+    //   getUnique: {
+    //     accept: {
+    //       getJson: 'application/vnd.dsalpha.creditMovementsImported.full+json',
+    //       getXml: 'application/vnd.dsalpha.creditMovementsImported.full+xml',
+    //       getJsonHateoas: 'application/vnd.dsalpha.creditMovementsImported.full.hateoas+json',
+    //     }
+    //   },
+    //   post: {
+    //     ContentType: {
+    //       postJson: 'application/vnd.dsalpha.creditMovementsImportedforcreation+json',
+    //       postJsonHateoas: 'application/vnd.dsalpha.creditMovementsImportedforcreation.hateoas+json'
+    //     }
+    //   },
+    //   patch: {
+    //     ContentType: {
+    //       patchJson: 'application/vnd.dsalpha.creditMovementsImportedforPatch+json',
+    //       patchJsonHateoas: 'application/vnd.dsalpha.creditMovementsImportedforPatch.hateoas+json'
+    //     }
+    //   }
+    // },
 
     client: {
       get: {

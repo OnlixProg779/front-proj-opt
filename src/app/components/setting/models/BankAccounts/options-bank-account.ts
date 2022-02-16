@@ -18,12 +18,12 @@ export class OptionsBankAccount {
     public searchQuery: string = null;
     public accountNumber: string = null;
     public accountAlias: string = null;
-    public employeeReferenceId: string = null;
     public accountOwner: string = null;
     public dniAccountOwner: string = null;
     public active: boolean = null;
     public accountTypeId: string = null;
     public bankId: string = null;
+    public userId: string = null;
     // ordenamiento
     public orderBy: string = null;
     // campos

@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit {
   filterThrottle = new Subject<string>();
   accept: string = 'application/json';
   listClients: ClientDto[];
+  
+  userName: string = localStorage.getItem('username');
 
 
   @Output() rightSidebarEvent = new EventEmitter<boolean>();

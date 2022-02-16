@@ -1605,8 +1605,8 @@ export class GenListsComponent implements OnInit {
     if (this.optionsBankAccounts.accountAlias != null) {
       params = params.append('AccountAlias', this.optionsBankAccounts.accountAlias);
     }
-    if (this.optionsBankAccounts.employeeReferenceId != null) {
-      params = params.append('EmployeeReferenceId', this.optionsBankAccounts.employeeReferenceId);
+    if (this.optionsBankAccounts.userId != null) {
+      params = params.append('userId', this.optionsBankAccounts.userId);
     }
     if (this.optionsBankAccounts.accountOwner != null) {
       params = params.append('AccountOwner', this.optionsBankAccounts.accountOwner);
@@ -1781,7 +1781,7 @@ export class GenListsComponent implements OnInit {
     entityCreate.accountTypeId = event.newData.accountType;
     entityCreate.bankId = event.newData.bank;
     entityCreate.dniAccountOwner = event.newData.dniAccountOwner;
-
+    entityCreate.userId = localStorage.getItem('userId');
     this.menusServices
       .addBankAccount(entityCreate, environment.mediaTypes.bankAccounts.post.ContentType.postJson)
       .subscribe((result: HttpResponse<any>) => {
@@ -1818,8 +1818,8 @@ export class GenListsComponent implements OnInit {
       if (this.optionsBankAccounts.accountAlias != null) {
         params = params.append('AccountAlias', this.optionsBankAccounts.accountAlias);
       }
-      if (this.optionsBankAccounts.employeeReferenceId != null) {
-        params = params.append('EmployeeReferenceId', this.optionsBankAccounts.employeeReferenceId);
+      if (this.optionsBankAccounts.userId != null) {
+        params = params.append('userId', this.optionsBankAccounts.userId);
       }
       if (this.optionsBankAccounts.accountOwner != null) {
         params = params.append('AccountOwner', this.optionsBankAccounts.accountOwner);

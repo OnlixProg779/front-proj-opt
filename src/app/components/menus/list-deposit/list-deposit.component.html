@@ -1,7 +1,5 @@
-
-<!-- Container-fluid starts-->
+<!-- 
 <app-list-credit-movements-generic [optionsCreditMovement]="optionsCreditMovement" (delete)="onDelete($event, content)" (update)="onEdit($event, content)" (patchVerified)="onVerified($event, content)" (submit)="searchFilters($event)"></app-list-credit-movements-generic>
-<!-- Container-fluid Ends-->
 
 <ng-template #content let-modal> 
     <div class="modal-header">
@@ -32,7 +30,7 @@
                     </div>
                     <div class="card-body p-0">
                       <div class="profile-details text-center">
-                        <h5 class="f-w-600 mb-0">Client: {{creditMovementToVerifi.client.name}}</h5>
+                        <h5 class="f-w-600 mb-0">Client: {{creditMovementToVerifi.user.userName}}</h5>
                         <span >Date: {{creditMovementToVerifi.depositDate  | date:'dd/MM/yyyy'}}</span><br>
                         <span >Bank Account: {{creditMovementToVerifi.bankAccount.accountAlias}}</span><br>
                         <span >Document: {{creditMovementToVerifi.document}}</span><br>
@@ -92,4 +90,4 @@
         <button *ngIf="modalUp.titleButton" type="button" class="btn btn-primary" (click)="modal.dismiss('accept')" ngbAutofocus>{{modalUp.titleButton}}</button>
         <button class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
     </div>
-</ng-template>
+</ng-template> -->

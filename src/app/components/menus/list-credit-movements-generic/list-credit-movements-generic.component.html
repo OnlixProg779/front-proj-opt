@@ -94,10 +94,10 @@
 
         <div class="card-body p-2">
                     
-           <div class="btn-popup pull-right" *ngIf="optionsCreditMovement.clientId">
-                <a class="btn btn-secondary" [routerLink]="'/deposits/create-deposit/'+ optionsCreditMovement.clientId">Create Deposit</a>
+           <div class="btn-popup pull-right" *ngIf="optionsCreditMovement.userId">
+                <a class="btn btn-secondary" [routerLink]="'/deposits/create-deposit/'+ optionsCreditMovement.userId">Create Deposit</a>
             </div>
-            <div class="btn-popup pull-right" *ngIf="optionsCreditMovement.clientId == undefined">
+            <div class="btn-popup pull-right" *ngIf="optionsCreditMovement.userId == undefined">
                 <a class="btn btn-secondary" [routerLink]="'/deposits/create-deposit/'">Create Deposit</a>
             </div>
 

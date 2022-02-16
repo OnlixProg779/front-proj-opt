@@ -1,8 +1,8 @@
+import { UserDto } from "src/app/shared/models/user-dto";
 import { BankAccountDtoD } from "../../setting/models/BankAccounts/friendly/bank-account-dto-d";
 import { CreditMovementStatusDto } from "../../setting/models/CreditMovementStatus/credit-movement-status-dto";
 import { CreditReasonDto } from "../../setting/models/CreditReason/credit-reason-dto";
 import { ClientDtoA } from "../../users/models/client-dto-a";
-import { CreditMovementsImportedDtoA } from "./CreditMovementImported/credit-movements-imported-dto-a";
 
 export class CreditMovementDto {
     public creditMovementsId: string;
@@ -13,9 +13,8 @@ export class CreditMovementDto {
     public verifiedType: string;//
     public image: string; //
     public bankAccount: BankAccountDtoD; //
-    public client:ClientDtoA; //
+    public user:UserDto; //
     public creditMovementStatus : CreditMovementStatusDto; //
-    public creditMovementsImported : CreditMovementsImportedDtoA;
     public creditReason:  CreditReasonDto;
     public active: boolean;
 }

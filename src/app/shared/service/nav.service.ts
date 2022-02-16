@@ -50,15 +50,15 @@ export class NavService {
 		
 		{
 			title: 'Deposits', icon: 'dollar-sign', type: 'sub', active: false, children: [
-				{ path: '/deposits/list-deposit', title: 'Deposit Lists', type: 'link' },
+				// { path: '/deposits/list-deposit', title: 'Deposit Lists', type: 'link' },
 				{ path: '/deposits/create-deposit', title: 'Create Deposit', type: 'link' },
-				{ path: '/deposits/upload-credmov-import', title: 'Credit Movements Imported', type: 'link' },
+				// { path: '/deposits/upload-credmov-import', title: 'Credit Movements Imported', type: 'link' },
 			]
 		},
 
 		{
 			title: 'Settings', icon: 'settings', type: 'sub', children: [
-				{ path: '/settings/profile', title: 'Profile', type: 'link' },
+				// { path: '/settings/profile', title: 'Profile', type: 'link' },
 				{ path: '/settings/menus', title: 'Menus', type: 'link' },
 			]
 		},

@@ -5,7 +5,6 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CreditMovementForCreateDto } from '../models/credit-movement-for-create-dto';
 import { CreditMovementForUpdateDto } from '../models/credit-movement-for-update-dto';
-import { CreditMovementsImportedForCreateDto } from '../models/CreditMovementImported/credit-movements-imported-for-create-dto';
 
 const API_URL = environment.apiURL + '/api/account/';
 
@@ -325,94 +324,7 @@ export class CreditMovementsService {
     return formData;
   }
 
-  // CREDIT MOVEMENTS IMPORTED
 
-  // POST  /api/account/{bankReferenceId}/CreditMovementsImported
-  uploadCreditMovementsImported(entity: CreditMovementsImportedForCreateDto[],
-    bankReferenceId: string,
-    auxMediaType: string): Observable<any> {
-
-    var headers = new HttpHeaders({
-      'Content-Type': auxMediaType
-    });
-    console.log("entreo qwq")
-    return this.http.post(`${API_URL}${bankReferenceId}/CreditMovementsImported`, entity, {
-      headers: headers,
-      observe: 'response' as 'body',
-      responseType: 'json',
-    });
-  }
-
-  // GET /api/account/{bankReferenceId}/CreditMovementsImported
-  getAllCreditMovementsImported(
-    bankReferenceId: string,
-    params: HttpParams,
-    auxMediaType: string
-  ): Observable<any> {
-    var headers;
-    var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
-
-    headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Accept: `${auxMediaType}`,
-      'If-None-Match': `"${eTag}"`,
-    });
-
-    return this.http
-      .get<any>(API_URL +bankReferenceId +'/CreditMovementsImported/', {
-        headers: headers,
-        observe: 'response' as 'body',
-        responseType: 'json',
-        params,
-      })
-      .pipe(
-        tap((resp) => {
-          if (resp.status == 200) {
-            //   this.eTag = JSON.parse(resp.headers.get("ETag"));
-            //    localStorage.setItem('If-None-Match-get-orders', this.eTag);
-          }
-        }),
-        catchError(this.handleError)
-      );
-  }
-
-  // GET ID /api/account/{bankReferenceId}/CreditMovementsImported/{creditMovementsImportedId}
-  getUniqueCreditMovementImported(
-    params: HttpParams,
-    bankReferenceId: string,
-    creditMovementsImportedId: string,
-    auxMediaType: string
-  ): Observable<any> {
-    var headers;
-    var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
-
-    headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Accept: `${auxMediaType}`,
-      'If-None-Match': `"${eTag}"`,
-    });
-
-    return this.http
-      .get<any>(API_URL +bankReferenceId +'/CreditMovementsImported/'+creditMovementsImportedId, {
-        headers: headers,
-        observe: 'response' as 'body',
-        responseType: 'json',
-        params,
-      })
-      .pipe(
-        tap((resp) => {
-          if (resp.status == 200) {
-            //   this.eTag = JSON.parse(resp.headers.get("ETag"));
-            //    localStorage.setItem('If-None-Match-get-orders', this.eTag);
-          }
-        }),
-        catchError(this.handleError)
-      );
-  }
-
-  // PATCH /api/account/{bankReferenceId}/CreditMovementsImported/{creditMovementsImportedId}
 
 
 
