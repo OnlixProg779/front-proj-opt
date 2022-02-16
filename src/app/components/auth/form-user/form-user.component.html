@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card tab2-card">
+                <div class="card-header">
+                    <h5> {{ renderValue }} </h5>
+                </div>
+                <div class="card-body tab2-card">
+                    <form [formGroup]="accountForm" appAutoFocusInvalidInput (submit)="save()" id="ngFormClient" class="needs-validation user-add">
+
+                        <ngb-tabset class="tab-coupon">
+                            <ngb-tab title="Account">
+                                <ng-template ngbTabContent>
+                                    <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                                        <div class="row">
+
+                                            <div class="col-xl-6">
+                                                <div class="card">
+                                                    <div class="card-header pt-0">
+                                                        <h5>Sign In Account</h5>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="validationCustom42" class="col-form-label pt-0"><span>*</span>
+                                                            Email</label>
+                                                        <input formControlName="userName" class="form-control" id="validationCustom42" type="email">
+                                                        <div *ngIf="accountForm.controls.userName.touched && accountForm.controls.userName.errors?.required" class="text text-danger row pl-4 pt-1">
+                                                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                                                            </app-feather-icons>
+                                                            <div>
+                                                                {{validatorService.getErrorField(accountForm,'userName','Email')}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="validationCustom43" class="col-form-label pt-0"><span>*</span>
+                                                            Password</label>
+                                                        <input formControlName="password" class="form-control" id="validationCustom43" type="password">
+                                                        <div *ngIf="accountForm.controls.password.touched && accountForm.controls.password.errors?.required" class="text text-danger row pl-4 pt-1">
+                                                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                                                            </app-feather-icons>
+                                                            <div>
+                                                                {{validatorService.getErrorField(accountForm,'password','Password')}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="validationCustom44" class="col-form-label pt-0"><span>*</span>
+                                                            Confirm Password</label>
+                                                        <input formControlName="confirmPwd" class="form-control" id="validationCustom44" type="password">
+                                                        <div *ngIf="accountForm.controls.confirmPwd.touched && accountForm.controls.confirmPwd.errors?.required" class="text text-danger row pl-4 pt-1">
+                                                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                                                            </app-feather-icons>
+                                                            <div>
+                                                                {{validatorService.getErrorField(accountForm,'confirmPwd','Confirm Password')}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                    
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+
+                        </ngb-tabset>
+                    </form>
+
+                    <div class="pull-right">
+                        <button type="submit" form="ngFormClient" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

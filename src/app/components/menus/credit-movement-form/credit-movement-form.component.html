@@ -6,8 +6,7 @@
           <h5> {{ renderValues.renderValue }} </h5>
         </div>
         <div class="card-header pb-0 pt-0">
-          <h6 *ngIf="renderValues.clientId"> Client: {{ renderValues.clientId }}</h6>
-          <h6>Atended by: {{employeeName}} </h6>
+          <h6 *ngIf="renderValues.clientId"> User: {{ renderValues.clientId }}</h6>
           <p>{{renderValues.renderAction}}</p>
         </div>
 
@@ -63,7 +62,7 @@
                           <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
                             <label class="d-block p-3" for="edo-ani{{indice}}"
                               *ngFor="let item of formOptionsCreditReason; let indice=index">
-                              <input value="{{ object.values(item)[0]}}" (change)="onItemChange()"
+                              <input value="{{ object.values(item)[0]}}" 
                                 formControlName="creditReasonId"
                                
                                 class="radio_animated" id="edo-ani{{indice}}" type="radio" name="rdo-ani">

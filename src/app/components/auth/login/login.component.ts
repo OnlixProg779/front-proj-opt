@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
 
   public closeResult: string;
   public modalUp = {
-    status: 'Invalid username or Password',
-    actionModal: 'LOGIN FAILED',
-    title: 'INVALID',
+    status: 'Username o Password incorrectas',
+    actionModal: 'FALLO EN LOGIN',
+    title: 'NO VALIDO',
     titleButton: '',
   };
 
@@ -39,16 +39,16 @@ export class LoginComponent implements OnInit {
 
   owlcarousel = [
     {
-      title: 'Welcome to Envios Ecuador',
-      desc: 'Fácil, Rápido y Seguro...',
+      title: 'Proyecto Optativa',
+      desc: 'Control de cuentas',
     },
     {
-      title: 'Welcome to Envios Ecuador',
-      desc: 'This website is for administrators only',
+      title: 'Integrantes',
+      desc: 'Valeria Salas - Daniel Salcedo - Alvaro Ramirez - José Macas - Julio Campoverde',
     },
     {
-      title: 'Welcome to Envios Ecuador',
-      desc: 'Panel Admin and more',
+      title: '10mo Semestre',
+      desc: 'Oracle',
     },
   ];
   owlcarouselOptions = {
@@ -99,6 +99,22 @@ export class LoginComponent implements OnInit {
             )}`;
           }
         );
+      }
+    );
+  }
+
+  createAccount(content2)
+  {
+    this.modalService
+    .open(content2, { ariaLabelledBy: 'modal-basic-title' })
+    .result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(
+          reason
+        )}`;
       }
     );
   }

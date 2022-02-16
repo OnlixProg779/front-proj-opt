@@ -9,10 +9,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { FormUserComponent } from './form-user/form-user.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, CreateUserComponent, FormUserComponent, UpdateUserComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

@@ -159,15 +159,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-terms">
-                                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <!-- <div class="custom-control custom-checkbox mr-sm-2">
                                                         <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                                         <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
                                                         <a href="javascript:void(0)" class="btn btn-default forgot-pass">lost your
                                                             password</a>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <div class="form-button">
-                                                    <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+                                                    <button class="btn btn-primary mr-1" type="submit" [disabled]="loginForm.invalid">Login</button>
+                                                    <a (click)="createAccount(content2)" class="btn btn-primary ml-1" style="background-color: #6EC6EB !important; border-color: #6EC6EB !important;">Sign up</a>
                                                 </div>
 
                                             </form>
@@ -199,3 +200,21 @@
         <button class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
     </div>
 </ng-template>
+
+<ng-template #content2 let-modal2>
+    <div class="modal-header">
+        <h5 class="modal-title f-w-600" id="exampleModalLabel"><strong> Crear Cuenta </strong></h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal2.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        
+        <app-create-user></app-create-user>
+        
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal2.dismiss('Cross click')">Close</button>
+    </div>
+</ng-template>
+

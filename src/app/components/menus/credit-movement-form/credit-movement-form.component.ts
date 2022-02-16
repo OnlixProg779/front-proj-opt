@@ -22,6 +22,9 @@ export class CreditMovementFormComponent implements OnInit {
 
   public depositForm: FormGroup;
 
+  userId: string = localStorage.getItem('userId'); 
+  username: string = localStorage.getItem('username'); 
+
   object = Object;
   public closeResult: string;
 
@@ -229,7 +232,7 @@ export class CreditMovementFormComponent implements OnInit {
           if (this.optionsBankAccounts.auxMediaTypeAccept.toLowerCase().includes('hateoas')) {
             // this.optionsBankAccounts.source.load(result.body.value);
             result.body.value.forEach((element: BankAccountDto) => {
-              if (element.userId == environment.employeeOwnerId || element.userId == this.employeeId) {
+              if (element.userId == this.userId) {
                 this.formOptionsBankAccounts.push({ value: element.bankAccountId, title: element.accountAlias })
               }
             });
@@ -238,7 +241,7 @@ export class CreditMovementFormComponent implements OnInit {
           } else {
             // this.optionsBankAccounts.source.load(result.body);
             result.body.forEach((element: BankAccountDto) => {
-              if (element.employeeReferenceId == environment.employeeOwnerId || element.employeeReferenceId == this.employeeId) {
+              if (element.userId == this.userId) {
                 this.formOptionsBankAccounts.push({ value: element.bankAccountId, title: element.accountAlias })
               }
             });

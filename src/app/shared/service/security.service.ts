@@ -7,6 +7,7 @@ import { AppUserAuth } from 'src/app/components/auth/models/app-user-auth';
 import { AppUser } from 'src/app/components/auth/models/app-user';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { UserCreateDto } from '../models/user-create-dto';
 
 
 const API_URL = environment.apiURL + '/api/Security/';
@@ -41,6 +42,8 @@ export class SecurityService {
         tap((resp) => {
           Object.assign(this.securityObject, resp);
           sessionStorage.setItem('bearerToken', this.securityObject.bearerToken);
+          localStorage.setItem('userId', this.securityObject.userId);
+          localStorage.setItem('username', this.securityObject.userName);
 
 
         
@@ -56,11 +59,27 @@ export class SecurityService {
     this.resetSecurityObject();
     // sessionStorage.setItem('bearerToken', '');
     sessionStorage.removeItem('bearerToken');
-    localStorage.removeItem('nombre_sing_in');
-    localStorage.removeItem('agency_sing_in');
-    localStorage.removeItem('employeeId_sing_in');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
     // localStorage.clear();
     }
+
+
+     // POST /api/Security/create
+  addUser(
+    entity: UserCreateDto,
+    auxMediaType: string
+  ): Observable<any> {
+    var headers = new HttpHeaders({
+      'Content-Type': auxMediaType
+    });
+
+    return this.http.post(`${API_URL}create`, entity, {
+      headers: headers,
+      observe: 'response' as 'body',
+      responseType: 'json',
+    });
+  }
 
 
     redirectToLogin(){
