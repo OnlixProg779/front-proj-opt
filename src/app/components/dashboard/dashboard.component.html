@@ -1,67 +1,170 @@
 <div class="container-fluid">
-    <div class="row">
-  
-      <div class="col-12">
-        <div class="card order-graph sales-carousel">
-          <div class="card-header">
-            <h6>Bank Accounts</h6>
-            <div class="row">
+  <div class="row">
+    <div class="col-12">
+      <div class="card order-graph sales-carousel">
+        <div class="card-header">
+          <h6>Bank Accounts</h6>
+     
+        </div>
+        <div class="card-body">
+          <div id="batchDelete" class="custom-datatable">
+            <div class="table-responsive">
+              <div class="row">
+                <div
+                  class="flex-column p-2 text-dark pl-2 ml-2 font-weight-bold"
+                >
+                  Total records: {{ optionsBankAccounts.totalCount }} u | View:
+                </div>
 
-            </div>
-          </div>
-          <div class="card-body">
-  
-            <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
-              <div class="table-responsive">
-                <ng2-smart-table [settings]="optionsBankAccounts.settings" [source]="optionsBankAccounts.source">
-                </ng2-smart-table>
+                <div class="form-group">
+                  <select
+                    class="form-control form-control-sm"
+                    [(ngModel)]="this.optionsBankAccounts.showPerPage"
+                    (change)="changeSettingsTable($event.target.value)"
+                  >
+                    <option [ngValue]="15">15</option>
+                    <option [ngValue]="5">5</option>
+                    <option [ngValue]="3">3</option>
+                  </select>
+                </div>
               </div>
+              <ng2-smart-table
+                [settings]="optionsBankAccounts.settings"
+                [source]="optionsBankAccounts.source"
+              ></ng2-smart-table>
             </div>
-  
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <app-card-bank-account *ngIf="viewMovements" [bankSelected]="bankSelected"
-    [title]="title"></app-card-bank-account>
-  
+</div>
 
-  
-  <ng-container *ngIf="viewMovements">
-    <div class="container-fluid">
-      <div class="card">
-        <div class="card-body  p-0">
-          <ngb-tabset>
-  
-            <ngb-tab title="Credit Movements">
-              <ng-template ngbTabContent>
-  
-                <!-- INICIO -->
-                <app-list-imported-credit-movements [bankAccountId]="bankAccountIdSelected">
-                </app-list-imported-credit-movements>
-  
-                <!-- FIN -->
-  
-              </ng-template>
-            </ngb-tab>
-  
-            <ngb-tab title="Debit Movements">
-              <ng-template ngbTabContent>
-  
-                <!-- INICIO -->
-                <app-list-imported-debit-movements></app-list-imported-debit-movements> <!-- FIN -->
-  
-              </ng-template>
-            </ngb-tab>
-  
-          </ngb-tabset>
-          <!-- <div class="pull-right">
-              <button type="submit" form="ngFormShipping" class="btn btn-primary" *ngIf="productsInGuide">Save</button>
-          </div> -->
+<app-card-bank-account
+  *ngIf="viewMovements"
+  [bankSelected]="bankSelected"
+  [title]="title"
+></app-card-bank-account>
+
+<ng-container *ngIf="viewMovements">
+  <div>
+
+    <div class="row justify-content-center">
+      <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 xl-50">
+        <div class="card o-hidden widget-cards">
+          <div class="bg-secondary card-body">
+            <div class="media static-top-widget row">
+              <div class="icons-widgets col-4">
+                <div class="align-self-center text-center">
+                  <app-feather-icons
+                    [icon]="'dollar-sign'"
+                    class="font-warning"
+                  ></app-feather-icons>
+                </div>
+              </div>
+              <div class="media-body col-8" *ngIf="SUM_DEPOS_VERIFICADOS">
+                <span class="m-0">Acreditaciones Verificadas</span>
+                <h3 class="mb-0">
+                  <span
+                    class="counter"
+                    [CountTo]="SUM_DEPOS_VERIFICADOS | currency"
+                    [from]="0"
+                    [duration]="2"
+                    >0000</span
+                  ><small> </small>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 xl-50">
+        <div class="card o-hidden widget-cards">
+          <div class="bg-warning card-body">
+            <div class="media static-top-widget row">
+              <div class="icons-widgets col-4">
+                <div class="align-self-center text-center">
+                  <app-feather-icons
+                    [icon]="'dollar-sign'"
+                    class="font-warning"
+                  ></app-feather-icons>
+                </div>
+              </div>
+              <div class="media-body col-8" *ngIf="SUM_DEPOS_X_VERIFICAR">
+                <span class="m-0">Acreditaciones Por verificar</span>
+                <h3 class="mb-0">
+                  <span
+                    class="counter"
+                    [CountTo]="SUM_DEPOS_X_VERIFICAR | currency"
+                    [from]="0"
+                    [duration]="2"
+                    >0000</span
+                  ><small> </small>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 xl-50">
+        <div class="card o-hidden widget-cards">
+          <div class="bg-primary card-body">
+            <div class="media static-top-widget row">
+              <div class="icons-widgets col-4">
+                <div class="align-self-center text-center">
+                  <app-feather-icons
+                    [icon]="'dollar-sign'"
+                    class="font-warning"
+                  ></app-feather-icons>
+                </div>
+              </div>
+              <div class="media-body col-8" *ngIf="OBTENER_BALANCE_CUENTA">
+                <span class="m-0">Balance de cuenta</span>
+                <h3 class="mb-0">
+                  <span
+                    class="counter"
+                    [CountTo]="OBTENER_BALANCE_CUENTA | currency"
+                    [from]="0"
+                    [duration]="2"
+                    >0000</span
+                  ><small> </small>
+                </h3>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </ng-container>
-  
+  </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body p-0">
+        <ngb-tabset>
+          <ngb-tab title="Credit Movements">
+            <ng-template ngbTabContent>
+              <!-- INICIO -->
+              <app-list-imported-credit-movements
+                [bankAccountId]="bankAccountIdSelected"
+                
+              >
+              </app-list-imported-credit-movements>
+
+              <!-- FIN -->
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab title="Debit Movements">
+            <ng-template ngbTabContent>
+              <!-- INICIO -->
+              <app-list-imported-debit-movements></app-list-imported-debit-movements>
+              <!-- FIN -->
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+        <!-- <div class="pull-right">
+              <button type="submit" form="ngFormShipping" class="btn btn-primary" *ngIf="productsInGuide">Save</button>
+          </div> -->
+      </div>
+    </div>
+  </div>
+</ng-container>

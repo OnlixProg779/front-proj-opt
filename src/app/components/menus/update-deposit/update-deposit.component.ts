@@ -87,7 +87,7 @@ export class UpdateDepositComponent implements OnInit {
         .subscribe((result: HttpResponse<any>) => {
           console.log(result)
           if (result.status == 201) {
-            this.router.navigate(['/clients/bills/', this.renderValues.clientId]);
+            this.router.navigate(['/dashboard/default']);
           }
         }, (err: HttpErrorResponse) => {
           console.warn(err);

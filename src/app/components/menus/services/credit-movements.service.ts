@@ -121,8 +121,8 @@ export class CreditMovementsService {
     if (entity.creditMovementStatusId) {
       formData.append('creditMovementStatusId', entity.creditMovementStatusId);
     }
-    if (entity.clientId) {
-      formData.append('clientId', entity.clientId);
+    if (entity.comment) {
+      formData.append('comment', entity.comment);
     }
 
     return formData;
@@ -306,8 +306,8 @@ export class CreditMovementsService {
     if (entity.creditMovementStatusId) {
       formData.append('creditMovementStatusId', entity.creditMovementStatusId);
     }
-    if (entity.clientId) {
-      formData.append('clientId', entity.clientId);
+    if (entity.comment) {
+      formData.append('comment', entity.comment);
     }
     if (entity.verifiedType) {
       formData.append('verifiedType', entity.verifiedType);

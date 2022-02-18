@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
   <div class="row">
 
     <div class="col-12">
@@ -36,39 +37,20 @@
 
               </div>
             </div>
-            <!-- <div class="col-xl-6">
-              <div class="card">
-                <div class="card-header pt-0 pb-1">
-                  <h5>Filters</h5>
-                </div>
-
-                <div class="form-group">
-                  <label class="col-form-label pt-0">
-                    Search Query </label>
-                  <input [(ngModel)]="optionsCreditMovement.searchQuery" class="form-control col-xl-8 col-sm-7"
-                    type="text">
-                </div>
-
-                <div class="form-group">
-                  <label class="col-form-label pt-0">
-                    Order by </label>
-                  <input [(ngModel)]="optionsCreditMovement.orderBy" class="form-control col-xl-8 col-sm-7"
-                    type="text">
-                </div>
-
-              </div>
-            </div> -->
           </div>
           <div class="card-body p-0">
             <button (click)="initDataCreditMovements()" class="btn btn-info">Search</button>
           </div>
         </div>
         <div class="card-body" *ngIf="bankAccountId">
-
+          <div class="btn-popup pull-right" >
+            <a class="btn btn-secondary" [routerLink]="'/deposits/create-deposit/'+ bankAccountId">Create Deposit</a>
+        </div>
           <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
             <div class="table-responsive">
               <ng2-smart-table [settings]="optionsCreditMovement.settings"
-                [source]="optionsCreditMovement.source">
+                [source]="optionsCreditMovement.source"
+                (edit)="onEdit($event,content)" (delete)="onDelete($event,content)">
               </ng2-smart-table>
             </div>
           </div>
@@ -78,4 +60,31 @@
   </div>
 </div>
 
+<ng-template #content let-modal> 
+  <div class="modal-header">
+      <h5 class="modal-title f-w-600" id="exampleModalLabel">{{modalUp.title}} <strong>({{modalUp.actionModal}})</strong></h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body" *ngIf="!modalUp.titleButton && modalUp.status != 'Verified Automatically'">
+      <h4 class="">This action is not possible.
+      </h4>
+      <h4 class="">The deposit has <span class="font-primary">{{modalUp.status}}</span></h4>
+  </div>
+  <div class="modal-body" *ngIf="modalUp.status == 'Verified Automatically'">
+    <h4 class="">The system has carried out the procedure automatically.
+    </h4>
+    <h4 class="">The deposit has <span class="font-primary">{{modalUp.status}}</span></h4>
+</div>
+  <div class="modal-body" *ngIf="modalUp.titleButton">
+      <h3>Are you sure to {{modalUp.titleButton}}?</h3>
+      
 
+  </div>
+
+  <div class="modal-footer">
+      <button *ngIf="modalUp.titleButton" type="button" class="btn btn-primary" (click)="modal.dismiss('accept')" ngbAutofocus>{{modalUp.titleButton}}</button>
+      <button class="btn btn-secondary" type="button" data-dismiss="modal" (click)="modal.dismiss('Cross click')">Close</button>
+  </div>
+</ng-template>

@@ -18,11 +18,11 @@ const routes: Routes = [
         }
       },
       {
-        path: 'list-deposit/:clientId',
+        path: 'list-deposit/:userId',
         component: ListDepositComponent,
         data: {
-          title: "Deposit Lists by Client",
-          breadcrumb: "Deposit Lists by Client"
+          title: "Deposit Lists by User",
+          breadcrumb: "Deposit Lists by User"
         }
       },
       {
@@ -42,15 +42,15 @@ const routes: Routes = [
         }
       },
       {
-        path: 'create-deposit/:clientId',
+        path: 'create-deposit/:bankAccountId',
         component: CreateDepositComponent,
         data: {
-          title: "Create Client Deposit",
-          breadcrumb: "Create Client Deposit"
+          title: "Create Deposit",
+          breadcrumb: "Create Deposit"
         }
       },
       {
-        path: 'update-deposit/:creditMovementId/:clientId',
+        path: 'update-deposit/:creditMovementId/:bankAccountId',
         component: UpdateDepositComponent,
         data: {
           title: "Update Deposit",

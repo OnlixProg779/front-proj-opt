@@ -6,7 +6,6 @@
           <h5> {{ renderValues.renderValue }} </h5>
         </div>
         <div class="card-header pb-0 pt-0">
-          <h6 *ngIf="renderValues.clientId"> User: {{ renderValues.clientId }}</h6>
           <p>{{renderValues.renderAction}}</p>
         </div>
 
@@ -21,39 +20,6 @@
                       <div class="card">
                         <div class="card-header pt-0">
                           <h5>New Deposit</h5>
-                        </div>
-
-                        <div class="form-group"
-                          *ngIf="renderValues.clientId === undefined || renderValues.clientId === ''">
-                          <!-- <input formControlName="clientId" class="form-control"  type="text" hidden #clientIdInput > -->
-                          <app-search-list (submit)="clienteSeleccionado($event)"> </app-search-list>
-                          <div
-                            *ngIf="(depositForm.controls.clientId.touched || depositForm.controls.clientId.dirty) && depositForm.controls.clientId.errors?.required"
-                            class="text text-danger row pl-4 pt-1">
-                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
-                            </app-feather-icons>
-                            <div>
-                              {{validatorService.getErrorField(depositForm,'clientId', 'Client')}}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="card" *ngIf="clientDto">
-                          <div class="card-body p-0" *ngIf="clientDto.clientId">
-                            <div class="profile-details text-center">
-                              <h5 class="f-w-600 mb-0">{{clientDto.name}}</h5>
-                              <span *ngIf="clientDto.phone != undefined"> {{clientDto.phone}}</span><br>
-                              <span *ngIf="clientDto.dni != undefined"> {{clientDto.dni}}</span><br>
-                              <span *ngIf="clientDto.instagramName != undefined"> {{clientDto.instagramName}}</span>
-                            </div>
-                          </div>
-
-
-                          <div class="col-md-4 p-0 m-1" *ngIf="clientDto.clientId">
-                            <button class="btn btn-dark form-button" (click)="borrarClient()" type="button">
-                              Change
-                            </button>
-                          </div>
                         </div>
 
                         <!-- [attr.checked]="optionCheked === object.values(item)[0]? '' : null" -->
@@ -80,45 +46,6 @@
                           </div>
                         </div>
 
-                        <!-- <div class="form-group" *ngIf="mode == options2[0].pay">
-                          <label for="validationCustom1" class="col-form-label pt-0">Select
-                            Credit Reason
-                            :</label>
-                          <select class="form-control digits col-xl-8 col-sm-7" id="validationCustom1"
-                            formControlName="creditReasonId">
-                            <ng-container *ngFor="let item of formOptionsCreditReason; let indice=index">
-                              <option value="{{ object.values(item)[0]}}">{{object.values(item)[1]}}</option>
-                            </ng-container>
-
-                          </select>
-                        </div> -->
-
-                        <div class="form-group" *ngIf="depositForm.controls['creditReasonId'].value == '5d8d994c-ab04-4220-bc07-4881a1fff490'">
-                          <label class="col-form-label mb-1"><span>*</span> Bank</label>
-
-                          <select formControlName="bankAccountId" class="form-control col-xl-8 col-sm-7">
-                            <option  [ngValue]="null"></option>
-                            <option *ngFor="let c of formOptionsBankAccounts" [ngValue]="object.values(c)[0]">{{object.values(c)[1]}}</option>
-                          </select>
-
-                          <!-- <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
-                            <label class="d-block p-3" for="pdo-ani4{{indice}}"
-                              *ngFor="let item of formOptionsBankAccounts; let indice=index">
-                              <input value="{{ object.values(item)[0]}}" formControlName="bankAccountId"
-                                class="radio_animated" id="pdo-ani4{{indice}}" type="radio" name="pdo-ani">
-                              <strong>{{object.values(item)[1]}}</strong>
-                            </label>
-                          </div> -->
-                          <div
-                            *ngIf="(depositForm.controls.bankAccountId.touched || depositForm.controls.bankAccountId.dirty) && depositForm.controls.bankAccountId.errors?.required"
-                            class="text text-danger row pl-4 pt-1">
-                            <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
-                            </app-feather-icons>
-                            <div>
-                              {{validatorService.getErrorField(depositForm,'bankAccountId', 'Bank Account')}}
-                            </div>
-                          </div>
-                        </div>
 
                       </div>
                     </div>
@@ -159,6 +86,13 @@
                             </div>
                           </div>
                         </div>
+                        <div class="form-group" >
+                          <label for="validationCustom22" class="col-form-label pt-0"><span> </span>
+                            Comment </label>
+                          <input formControlName="comment" class="form-control col-xl-8 col-sm-7"
+                            id="validationCustom22" type="text">
+              
+                        </div>
 
                         <div class="form-group">
                           <label for="validationCustom5" class="col-form-label pt-0"><span>*</span>
@@ -176,12 +110,12 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <label for="validationCustom0" class="col-form-label pt-0"><span>*</span>
                             Image</label>
                           <app-input-img [urlImagenActual]="modelo?.image"
                             (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </form>

@@ -7,5 +7,5 @@ export class CreditMovementForManipulationDto {
         public bankAccountId: string;
         public creditReasonId: string;
         public creditMovementStatusId: string;
-        public clientId: string;
+        public comment: string;
 }

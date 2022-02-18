@@ -220,6 +220,9 @@ export class DashboardComponent implements OnInit {
         console.warn(err);
       });
   }
+  changeSettingsTable(event){
+    this.optionsBankAccounts.source.setPaging(1,this.optionsBankAccounts.showPerPage)
+  }
 
   pageChangeBankAccount(pageIndex: any) {
     var getNew = pageIndex * this.optionsBankAccounts.showPerPage;
@@ -294,8 +297,15 @@ export class DashboardComponent implements OnInit {
       this.viewMovements = true;
       this.title = "View";
       this.bankAccountIdSelected = item.entity.bankAccountId;
+    
       this.patchBankSelected(item.entity);
-      console.log(item);
+      this.SUM_DEPOS_X_VERIFICAR = null;
+      this.SUM_DEPOS_VERIFICADOS = null;
+  this.OBTENER_BALANCE_CUENTA = null;
+  this.getSUM_DEPOS_X_VERIFICAR(item.entity.bankAccountId);
+  this.getOBTENER_BALANCE_CUENTA(item.entity.bankAccountId);
+  this.getSUM_DEPOS_VERIFICADOS(item.entity.bankAccountId);
+  // console.log(item);
     }
   }
   patchBankSelected(entity: any) {
@@ -321,7 +331,74 @@ export class DashboardComponent implements OnInit {
     return dateObject;
   }
 
+  SUM_DEPOS_X_VERIFICAR : number = null;
+  SUM_DEPOS_VERIFICADOS : number = null;
+  OBTENER_BALANCE_CUENTA: number = null;
 
+  getSUM_DEPOS_X_VERIFICAR(bankAccountId: string){
+    let params = new HttpParams();
+    
+      this.menusServices
+      .getSUM_DEPOS_X_VERIFICAR(bankAccountId)
+      .subscribe((result: HttpResponse<any>) => {
+        // console.log(result);
+        if (!result) {
+          return;
+        }
+        if (result.status == 200) {
+         console.log('entro');
+            this.SUM_DEPOS_X_VERIFICAR = result.body;
+
+        }
+      }, (err: HttpErrorResponse) => {
+        console.warn(err);
+        this.SUM_DEPOS_X_VERIFICAR = 0.001;
+      });
+  }
+
+  getSUM_DEPOS_VERIFICADOS(bankAccountId: string){
+    let params = new HttpParams();
+    
+    this.menusServices
+    .getSUM_DEPOS_VERIFICADOS(bankAccountId)
+    .subscribe((result: HttpResponse<any>) => {
+      // console.log(result);
+      if (!result) {
+        return;
+      }
+      if (result.status == 200) {
+       
+          this.SUM_DEPOS_VERIFICADOS = result.body;
+console.log(this.SUM_DEPOS_VERIFICADOS);
+      }
+    }, (err: HttpErrorResponse) => {
+      console.warn(err);
+      this.SUM_DEPOS_VERIFICADOS = 0.001;
+    });
+  }
+
+  getOBTENER_BALANCE_CUENTA(bankAccountId: string){
+    let params = new HttpParams();
+    
+    this.menusServices
+    .getOBTENER_BALANCE_CUENTA(bankAccountId)
+    .subscribe((result: HttpResponse<any>) => {
+      // console.log(result);
+      if (!result) {
+        return;
+      }
+      if (result.status == 200) {
+       
+          this.OBTENER_BALANCE_CUENTA = result.body;
+          if(this.OBTENER_BALANCE_CUENTA == 0){
+            this.OBTENER_BALANCE_CUENTA = 0.001;
+          }
+      }
+    }, (err: HttpErrorResponse) => {
+      console.warn(err);
+      this.OBTENER_BALANCE_CUENTA = 0.001;
+    });
+  }
 
 
 }

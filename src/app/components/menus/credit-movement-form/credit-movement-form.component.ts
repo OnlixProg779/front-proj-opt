@@ -12,6 +12,7 @@ import { ClientDto } from '../../users/models/client-dto';
 import { CreditMovementDto } from '../models/credit-movement-dto';
 import { CreditMovementForCreateDto } from '../models/credit-movement-for-create-dto';
 import { v4 as uuidv4 } from 'uuid';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-credit-movement-form',
@@ -25,6 +26,7 @@ export class CreditMovementFormComponent implements OnInit {
   userId: string = localStorage.getItem('userId'); 
   username: string = localStorage.getItem('username'); 
 
+  bankAccountId: string = null;
   object = Object;
   public closeResult: string;
 
@@ -38,14 +40,14 @@ export class CreditMovementFormComponent implements OnInit {
 
   depositEmitCreate: CreditMovementForCreateDto;
 
-  public optionsBankAccounts: OptionsBankAccount = new OptionsBankAccount();
+  // public optionsBankAccounts: OptionsBankAccount = new OptionsBankAccount();
   public optionsCreditReason: OptionsCreditReason = new OptionsCreditReason();
 
 
   formOptionsBankAccounts = [];
   formOptionsCreditReason = [];
 
-  clientDto: ClientDto = null;
+  // clientDto: ClientDto = null;
 
   @Input()
   modelo: CreditMovementDto;
@@ -58,13 +60,13 @@ export class CreditMovementFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public validatorService: ValidatorsFormsService,
-    private menusServices: MenusService
+    private menusServices: MenusService,
+    activatedRouter: ActivatedRoute
   ) {
-    this.optionsBankAccounts.auxMediaTypeAccept = environment.mediaTypes.bankAccounts.get.accept.getAllJson;
-    this.optionsBankAccounts.active = true;
-    this.optionsBankAccounts.fields = 'BankAccountId,AccountAlias,EmployeeReferenceId';
-    this.initDataBankAccount();
-
+    activatedRouter.params.subscribe((params) => {
+      this.bankAccountId = params.bankAccountId;
+      console.log(this.bankAccountId);
+    });
     this.optionsCreditReason.auxMediaTypeAccept = environment.mediaTypes.creditReason.get.accept.getAllJson;
     this.optionsCreditReason.active = true;
     this.optionsCreditReason.fields = 'CreditReasonId,Reason';
@@ -98,21 +100,7 @@ export class CreditMovementFormComponent implements OnInit {
 
   }
    public fieldDocument: string = "# Document";
-  // onItemChange() {
-  //   var value = this.depositForm.controls['creditReasonId'].value;
-  //   if (value != environment.tuplas.creditReason.payId) {
 
-  //     this.depositForm.controls['bankAccountId'].setValue(environment.tuplas.bankAccount.gitRefundClient);
-  //     this.fieldDocument = 'Reason';
-  //   } else {
-  //     console.log("Entro aqui")
-  //     this.depositForm.controls['bankAccountId'].setValue(null);
-  //     this.depositForm.controls['document'].setValue(null);
-  //      this.fieldDocument = '# Document';
-  //   }
-  //   console.log()
-  //   console.log(this.depositForm.controls['document'].value)
-  // }
 
   createDepositForm() {
     this.depositForm = this.formBuilder.group({
@@ -143,11 +131,7 @@ export class CreditMovementFormComponent implements OnInit {
           validators: [Validators.required],
         },
       ],
-      clientId: ['',
-        {
-          validators: [Validators.required],
-        }
-      ],
+      comment: [''],
     });
   }
 
@@ -158,10 +142,14 @@ export class CreditMovementFormComponent implements OnInit {
       this.depositForm.patchValue({ image: null });
     }
 
-    // this.depositForm.controls['creditMovementStatusId'].setValue('');
-    // this.depositForm.controls['creditMovementStatusId'].setValue(
-    //   environment.tuplas.creditMovementStatus.pendingReview
-    // );
+    this.depositForm.controls['creditMovementStatusId'].setValue('');
+    this.depositForm.controls['creditMovementStatusId'].setValue(
+      environment.tuplas.creditMovementStatus.porVerificar
+    );
+    this.depositForm.controls['bankAccountId'].setValue('');
+    this.depositForm.controls['bankAccountId'].setValue(
+      this.bankAccountId
+    );
 
     if (this.depositForm.valid) {
 
@@ -178,22 +166,13 @@ export class CreditMovementFormComponent implements OnInit {
     } else {
       this.depositForm.markAllAsTouched();
       console.log('FORM NOT VALID');
-      console.log(this.depositForm);
+      console.log(this.depositForm.value);
 
       return;
     }
   }
 
-  clienteSeleccionado(cliente) {
-    this.clientDto = cliente;
-    if (cliente != null) {
-      this.renderValues.clientId = cliente.clientId;
-      this.depositForm.get('clientId').setValue(cliente.clientId);
-    } else {
-      this.renderValues.clientId = '';
-      this.depositForm.get('clientId').setValue('');
-    }
-  }
+
 
   archivoSeleccionado(file) {
     this.changeImage = true;
@@ -201,58 +180,7 @@ export class CreditMovementFormComponent implements OnInit {
   }
 
 
-  borrarClient() {
-    this.renderValues.clientId = undefined;
-    this.clientDto = null;
-  }
 
-
-  //--------------------------------
-  initDataBankAccount() {
-    let params = new HttpParams();
-
-    if (this.optionsBankAccounts.active != null) {
-      params = params.append('Active', this.optionsBankAccounts.active);
-    }
-    if (this.optionsBankAccounts.orderBy != null) {
-      params = params.append('OrderBy', this.optionsBankAccounts.orderBy);
-    }
-    if (this.optionsBankAccounts.fields != null) {
-      params = params.append('Fields', this.optionsBankAccounts.fields);
-    }
-    params = params.append('PageNumber', 1);
-    params = params.append('PageSize', 100);
-    this.menusServices
-      .getAllBankAccounts(params, this.optionsBankAccounts.auxMediaTypeAccept)
-      .subscribe((result: HttpResponse<any>) => {
-        if (!result) {
-          return;
-        }
-        if (result.status == 200) {
-          if (this.optionsBankAccounts.auxMediaTypeAccept.toLowerCase().includes('hateoas')) {
-            // this.optionsBankAccounts.source.load(result.body.value);
-            result.body.value.forEach((element: BankAccountDto) => {
-              if (element.userId == this.userId) {
-                this.formOptionsBankAccounts.push({ value: element.bankAccountId, title: element.accountAlias })
-              }
-            });
-            this.optionsBankAccounts.totalCount = JSON.parse(result.headers.get('X-Pagination'));
-            this.optionsBankAccounts.totalCount = this.optionsBankAccounts.totalCount['totalCount'];
-          } else {
-            // this.optionsBankAccounts.source.load(result.body);
-            result.body.forEach((element: BankAccountDto) => {
-              if (element.userId == this.userId) {
-                this.formOptionsBankAccounts.push({ value: element.bankAccountId, title: element.accountAlias })
-              }
-            });
-            this.optionsBankAccounts.totalCount = JSON.parse(result.headers.get('X-Pagination'));
-            this.optionsBankAccounts.totalCount = this.optionsBankAccounts.totalCount['totalCount'];
-          }
-        }
-      }, (err: HttpErrorResponse) => {
-        console.warn(err);
-      });
-  }
 
   initDataCreditReasons() {
     let params = new HttpParams();

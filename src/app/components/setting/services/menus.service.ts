@@ -15,6 +15,7 @@ import { CreditReasonForCreateDto } from '../models/CreditReason/credit-reason-f
 import { CreditMovementStatusForCreateDto } from '../models/CreditMovementStatus/credit-movement-status-for-create-dto';
 import { BankForCreateDto } from '../models/Bank/bank-for-create-dto';
 import { BankAccountForCreateDto } from '../models/BankAccounts/bank-account-for-create-dto';
+import { v4 as uuidv4 } from 'uuid';
 
 const API_URL = environment.apiURL + '/api/lists/';
 
@@ -28,12 +29,12 @@ export class MenusService {
   // AccountType
   // get all /api/lists/AccountType
   getAllOAccountTypes(
-    params: HttpParams,
+    params: HttpParams, 
     auxMediaType: string
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -157,7 +158,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -190,7 +191,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -281,7 +282,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -314,7 +315,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -405,7 +406,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -438,7 +439,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -529,7 +530,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -562,7 +563,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -654,7 +655,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -687,7 +688,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -779,7 +780,7 @@ export class MenusService {
     ): Observable<any> {
       var headers;
       var eTag;
-      eTag = localStorage.getItem('If-None-Match-get------');
+      eTag =  uuidv4();
   
       headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -812,7 +813,7 @@ export class MenusService {
     ): Observable<any> {
       var headers;
       var eTag;
-      eTag = localStorage.getItem('If-None-Match-get------');
+      eTag =  uuidv4();
   
       headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -904,7 +905,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -937,7 +938,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -1016,7 +1017,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -1049,7 +1050,7 @@ export class MenusService {
   ): Observable<any> {
     var headers;
     var eTag;
-    eTag = localStorage.getItem('If-None-Match-get------');
+    eTag =  uuidv4();
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -1118,6 +1119,101 @@ export class MenusService {
     );
   }
 
+  // FUNCIONES
+    // get /api/lists/PorVerificar/{bankAccountId}/porv  
+    getSUM_DEPOS_X_VERIFICAR(
+      bankAccountId: string
+    ): Observable<any> {
+      var headers;
+      var eTag;
+      eTag =  uuidv4();
+  var params = new HttpParams();
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: `application/json`,
+        'If-None-Match': `"${eTag}"`,
+      });
+  
+      return this.http
+        .get<any>(API_URL + 'PorVerificar/' + bankAccountId+'/porv', {
+          headers: headers,
+          observe: 'response' as 'body',
+          responseType: 'json',
+          params,
+        })
+        .pipe(
+          tap((resp) => {
+            if (resp.status == 200) {
+              //   this.eTag = JSON.parse(resp.headers.get("ETag"));
+              //    localStorage.setItem('If-None-Match-get-orders', this.eTag);
+            }
+          }),
+          catchError(this.handleError)
+        );
+    }
+  
+    getSUM_DEPOS_VERIFICADOS(
+      bankAccountId: string
+    ): Observable<any> {
+      var headers;
+      var eTag;
+      eTag =  uuidv4();
+  var params = new HttpParams();
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: `application/json`,
+        'If-None-Match': `"${eTag}"`,
+      });
+  
+      return this.http
+        .get<any>(API_URL + 'PorVerificar/' + bankAccountId+'/verif', {
+          headers: headers,
+          observe: 'response' as 'body',
+          responseType: 'json',
+          params,
+        })
+        .pipe(
+          tap((resp) => {
+            if (resp.status == 200) {
+              //   this.eTag = JSON.parse(resp.headers.get("ETag"));
+              //    localStorage.setItem('If-None-Match-get-orders', this.eTag);
+            }
+          }),
+          catchError(this.handleError)
+        );
+    }
+  
+
+    getOBTENER_BALANCE_CUENTA(
+      bankAccountId: string
+    ): Observable<any> {
+      var headers;
+      var eTag;
+      eTag = uuidv4();
+  var params = new HttpParams();
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: `application/json`,
+        'If-None-Match': `"${eTag}"`,
+      });
+  
+      return this.http
+        .get<any>(API_URL + 'PorVerificar/' + bankAccountId+'/bal', {
+          headers: headers,
+          observe: 'response' as 'body',
+          responseType: 'json',
+          params,
+        })
+        .pipe(
+          tap((resp) => {
+            if (resp.status == 200) {
+              //   this.eTag = JSON.parse(resp.headers.get("ETag"));
+              //    localStorage.setItem('If-None-Match-get-orders', this.eTag);
+            }
+          }),
+          catchError(this.handleError)
+        );
+    }
   
   // ERROR
   private handleError(error: HttpErrorResponse) {

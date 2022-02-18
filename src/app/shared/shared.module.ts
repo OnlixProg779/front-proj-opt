@@ -40,6 +40,7 @@ import { ListImportedDebitMovementsComponent } from './list-imported-debit-movem
 import { ScannerQrBarcodeComponent } from './utils/scanner-qr-barcode/scanner-qr-barcode.component';
 
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { CountToModule } from 'angular-count-to';
 
 
 @NgModule({
@@ -79,7 +80,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     NgSelect2Module,
     NgxDatatableModule,
     NgbModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    CountToModule,
+
     
   ],
   providers: [NavService, WINDOW_PROVIDERS],
